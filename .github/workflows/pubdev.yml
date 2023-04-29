@@ -8,11 +8,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.7.12'
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@v1
+
       - name: Install dependencies
         run: flutter pub get
       - name: Analyze
@@ -24,9 +25,6 @@ jobs:
       - name: Check Publish Warnings
         run: dart pub publish --dry-run
       - name: Publish
-        uses: sakebook/actions-flutter-pub-publisher@v1.4.1
+        uses:  dart-lang/publish-to-pub-dev-action@v1
         with:
           credential: ${{ secrets.TOKEN }}
-          flutter_package: true
-          skip_test: true
-          dry_run: true
