@@ -17,8 +17,12 @@ jobs:
         run: flutter pub get
       - name: Analyze
         run: flutter analyze
-      - name: publish
-        run: dart pub publish --force
+      - name: Publish
+        uses: k-paxian/dart-package-publisher@v1.5.1
+        with:
+          credentialJson: ${{ secrets.PUB_CREDENTIAL_JSON }}
+          flutter: true
+          skipTests: true
         # uses: dart-lang/publish-to-pub-dev-action@v1
         # with:
         #   pub_token: ${{ secrets.PUB_DEV_PUBLISH_ACCESS_TOKEN }}
