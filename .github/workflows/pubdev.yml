@@ -17,8 +17,8 @@ jobs:
         run: flutter pub get
       - name: Analyze
         run: flutter analyze
-      - name: publish
-        uses: dart-lang/setup-dart/.github/workflows/pubdev.yml@v2
+      
+      - uses: dart-lang/setup-dart/.github/workflows/pubdev.yml@v2
         with:
           pub_token: ${{ secrets.PUB_DEV_PUBLISH_ACCESS_TOKEN }}
       # - name: Run tests
