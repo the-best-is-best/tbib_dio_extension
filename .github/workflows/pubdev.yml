@@ -24,9 +24,6 @@ jobs:
       - name: Check Publish Warnings
         run: dart pub publish --dry-run
       - name: Publish
-        uses: sakebook/actions-flutter-pub-publisher@v1.4.1
-        with:
-          credential: ${{ secrets.TOKEN }}
-          flutter_package: true
-          skip_test: true
-          dry_run: true
+        uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+#         with:
+#           working-directory: path/to/package/within/repository
