@@ -23,7 +23,7 @@ jobs:
         run: dart format --fix .
       - name: Check Publish Warnings
         run: dart pub publish --dry-run
-      - name: Publish
-        uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+
+      - uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
 #         with:
 #           working-directory: path/to/package/within/repository
