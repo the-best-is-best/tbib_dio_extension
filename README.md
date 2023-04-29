@@ -32,7 +32,3 @@ import 'package:tbib_dio_extension/tbib_dio_extension.dart';
    */
 
    ErrorHandler.handle(error, messageFromApi: (error is DioError) ? error.response?.data['errorMessage'] : null).failure.messages;
-
-```
-
-```
