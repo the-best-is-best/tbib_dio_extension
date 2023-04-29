@@ -24,8 +24,9 @@ jobs:
       - name: Check Publish Warnings
         run: dart pub publish --dry-run
       - name: Publish
-        uses: k-paxian/dart-package-publisher@v1.5.1
+        uses: sakebook/actions-flutter-pub-publisher@v1.4.1
         with:
-          credentialJson: ${{ secrets.TOKEN }}
-          flutter: true
-          skipTests: true
+          credential: ${{ secrets.TOKEN }}
+          flutter_package: true
+          skip_test: true
+          dry_run: true
