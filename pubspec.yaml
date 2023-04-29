@@ -1,7 +1,7 @@
 name: tbib_dio_extension
-description: A new Flutter package project.
+description: Init Dio With pretty logger to log errors and return you errors dio.
 version: 0.0.1
-homepage: null
+homepage: https://github.com/the-best-is-best/tbib_dio_extension
 
 environment:
   sdk: '>=2.19.6 <3.0.0'

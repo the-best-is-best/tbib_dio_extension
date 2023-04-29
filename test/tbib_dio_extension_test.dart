@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tbib_dio_extension/src/dio_handler.dart';
 import 'package:tbib_dio_extension/tbib_dio_extension.dart';
 
 void main() {
@@ -16,10 +15,7 @@ void main() {
     } catch (error) {
       print(
           "error catch is ${ErrorHandler.handle(error, messageFromApi: (error is DioError) ? error.response?.data['errorMessage'] : null).failure.messages}");
-      // print(MyErrorHandler(error,
-      //         messageErrorApi: (error).response?.data?['errorMessage'])
-      //     .failure
-      //     .messages);
+      print(ErrorHandler.handle(error));
     }
   });
 }

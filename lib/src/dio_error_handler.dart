@@ -138,46 +138,35 @@ class ResponseCode {
 }
 
 class ResponseMessage {
-  // API status codes
-  // API response codes
-
-  static String SUCCESS = StringsDioError.SUCCESS; // success with data
-  static String NO_CONTENT =
+  static const String SUCCESS = StringsDioError.SUCCESS; // success with data
+  static const String NO_CONTENT =
       StringsDioError.NO_CONTENT; // success with no content
-  static String BAD_REQUEST =
+  static const String BAD_REQUEST =
       StringsDioError.Bad_REQUEST; // failure, api rejected our request
-  static String FORBIDDEN =
+  static const String FORBIDDEN =
       StringsDioError.FORBIDDEN_REQUEST; // failure,  api rejected our request
-  static String UNAUTHORISED =
+  static const String UNAUTHORISED =
       StringsDioError.UNAUTHORIZED; // failure, user is not authorised
-  static String NOT_FOUND = StringsDioError
+  static const String NOT_FOUND = StringsDioError
       .NO_FOUND; // failure, API url is not correct and not found in api side.
-  static String INTERNAL_SERVER_ERROR = StringsDioError
+  static const String INTERNAL_SERVER_ERROR = StringsDioError
       .INTERNAL_SERVER_ERROR; // failure, a crash happened in API side.
 
   // local responses codes
-  static String DEFAULT =
+  static const String DEFAULT =
       StringsDioError.DEFAULT_ERROR; // unknown error happened
-  static String CONNECT_TIMEOUT =
+  static const String CONNECT_TIMEOUT =
       StringsDioError.TIME_OUT; // issue in connectivity
-  static String CANCEL =
+  static const String CANCEL =
       StringsDioError.DEFAULT_ERROR; // API request was cancelled
-  static String RECEIVE_TIMEOUT =
+  static const String RECEIVE_TIMEOUT =
       StringsDioError.TIME_OUT; //  issue in connectivity
-  static String SEND_TIMEOUT =
+  static const String SEND_TIMEOUT =
       StringsDioError.TIME_OUT; //  issue in connectivity
-  static String CACHE_ERROR = StringsDioError
+  static const String CACHE_ERROR = StringsDioError
       .DEFAULT_ERROR; //  issue in getting data from local data source (cache)
-  static String NO_INTERNET_CONNECTION =
+  static const String NO_INTERNET_CONNECTION =
       StringsDioError.NO_INTERNET; // issue in connectivity
-  static String BAD_CERTIFICATE =
+  static const String BAD_CERTIFICATE =
       StringsDioError.BAD_CERTIFICATE; //Server Not Secure
-}
-
-class MyErrorHandler extends ErrorHandler {
-  final dynamic error;
-  final String? messageErrorApi;
-
-  MyErrorHandler(this.error, {this.messageErrorApi})
-      : super.handle(error, messageFromApi: messageErrorApi);
 }
