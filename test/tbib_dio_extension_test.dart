@@ -5,7 +5,7 @@ import 'package:tbib_dio_extension/tbib_dio_extension.dart';
 
 void main() {
   test('Test Custom Error', () async {
-    DioManger.init(baseUrl: 'https://localhost:7103');
+    DioManger.init();
     var dio = DioManger.dioApi;
     try {
       debugPrint("dio url is ${(dio.options.baseUrl)}");

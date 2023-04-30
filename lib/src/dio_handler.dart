@@ -5,24 +5,52 @@ import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioManger {
+  /// your dio
   static late Dio dioApi;
 
+  /// use it to custom your options
+  /// PrettyDioLogger active when build debug mode only
+  static void initWithCustomOption(
+      {required BaseOptions baseOptions,
+
+      /// add your custom Interceptor
+      Iterable<Interceptor> iterable = const []}) {
+    dioApi = Dio(
+      baseOptions,
+    );
+
+    dioApi.interceptors.addAll(iterable);
+
+    if (kDebugMode) {
+      if (!dioApi.options.baseUrl.contains('https')) {
+        HttpOverrides.global = PostHttpOverrides();
+      }
+      dioApi.interceptors.add(PrettyDioLogger(
+          requestHeader: true, requestBody: true, responseHeader: true));
+    }
+  }
+
+  /// use it if will use default settings
+  /// PrettyDioLogger active when build debug mode only
   static void init(
-      {required String baseUrl,
-      Duration timeOut = const Duration(microseconds: 6),
-      String contentType = "application/json",
-      String accept = "application/json"}) {
+      {String baseUrl = "",
+      Duration timeOut = const Duration(minutes: 2),
+      String contentType = 'application/json',
+
+      /// add your custom Interceptor
+      Iterable<Interceptor> iterable = const []}) {
     dioApi = Dio(
       BaseOptions(
         baseUrl: baseUrl,
-        receiveDataWhenStatusError: true,
-        // validateStatus: (v) => v! < 500,
         connectTimeout: timeOut,
         receiveTimeout: timeOut,
-        headers: {'CONTENT-TYPE': contentType, 'ACCEPT': accept},
+        sendTimeout: timeOut,
+        contentType: contentType,
       ),
     );
-    if (!kReleaseMode) {
+    dioApi.interceptors.addAll(iterable);
+
+    if (kDebugMode) {
       if (!dioApi.options.baseUrl.contains('https')) {
         HttpOverrides.global = PostHttpOverrides();
       }

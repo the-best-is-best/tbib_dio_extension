@@ -10,8 +10,12 @@ import 'package:tbib_dio_extension/tbib_dio_extension.dart';
 
 
 ```dart
-// in main 
+// in main it removed in v 1.0.0 baseUrl optional
     DioManger.init(baseUrl: 'baseUrl');
+
+
+// for custom option
+DioManger.initWithCustomOption();
 
     // get dio 
     var dio = DioManger.dioApi;

@@ -3,8 +3,49 @@ import 'package:flutter/material.dart';
 import 'package:tbib_dio_extension/tbib_dio_extension.dart';
 
 void main() {
-  DioManger.init(baseUrl: 'baseUrl');
+  DioManger.init();
   runApp(const MyApp());
+}
+
+class TokenInterceptor extends Interceptor {
+  @override
+  Future<void> onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
+    // String? userJson = di<GetStorage>().read(GetStorageKeys.userKey);
+    // if (userJson != null && userJson.isNotEmpty) {
+    //   UserModel user = UserModel.fromJson(jsonDecode(userJson));
+    //   if (user.token.isNotEmpty) {
+    //     options.headers.addAll({'access_token': user.token});
+    //   } else {
+    //     di<GetStorage>().remove(GetStorageKeys.userKey);
+    //     MitX.offAllNamed(RouteManager.authRoute);
+    //   }
+    // }
+    super.onRequest(options, handler);
+  }
+
+  @override
+  Future<void> onResponse(
+    Response response,
+    ResponseInterceptorHandler handler,
+  ) async {
+    if (response.statusCode == 403 || response.statusCode == 401) {
+      // di<GetStorage>().remove(GetStorageKeys.userKey);
+      // MitX.offAllNamed(RouteManager.authRoute);
+    }
+
+    super.onResponse(response, handler);
+  }
+
+  @override
+  Future<void> onError(
+    DioError err,
+    ErrorInterceptorHandler handler,
+  ) async {
+    super.onError(err, handler);
+  }
 }
 
 class MyApp extends StatelessWidget {

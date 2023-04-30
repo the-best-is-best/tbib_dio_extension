@@ -1,3 +1,14 @@
+## 1.0.0
+* Use sdk 2.12.0 to above
+* now you can send custom Interceptor
+* remove init function use
+```dart
+// default option
+DioManager.init();
+// custom option
+DioManger.initWithCustomOption();
+```
+
 ## 0.0.5
 * Use sdk 2.19.4 to above
 
