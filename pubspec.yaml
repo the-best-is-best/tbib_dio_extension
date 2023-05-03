@@ -1,6 +1,6 @@
 name: tbib_dio_extension
 description: Init Dio With pretty logger to log errors and return you errors dio if url with http will get data.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/the-best-is-best/tbib_dio_extension
 
 environment:
