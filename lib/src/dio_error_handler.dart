@@ -47,19 +47,28 @@ class ErrorHandler implements Exception {
         switch (error.response?.statusCode) {
           case ResponseCode.BAD_REQUEST:
             return errorMessageApi != null
-                ? Failure(ResponseCode.BAD_REQUEST,
-                    error.response!.data['errorMessage'])
+                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi)
                 : DataSource.BAD_REQUEST.getFailure();
           case ResponseCode.FORBIDDEN:
-            return DataSource.FORBIDDEN.getFailure();
+            return errorMessageApi != null
+                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi)
+                : DataSource.FORBIDDEN.getFailure();
           case ResponseCode.UNAUTHORISED:
-            return DataSource.UNAUTHORISED.getFailure();
+            return errorMessageApi != null
+                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi)
+                : DataSource.UNAUTHORISED.getFailure();
           case ResponseCode.NOT_FOUND:
-            return DataSource.NOT_FOUND.getFailure();
+            return errorMessageApi != null
+                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi)
+                : DataSource.NOT_FOUND.getFailure();
           case ResponseCode.INTERNAL_SERVER_ERROR:
-            return DataSource.INTERNAL_SERVER_ERROR.getFailure();
+            return errorMessageApi != null
+                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi)
+                : DataSource.INTERNAL_SERVER_ERROR.getFailure();
           default:
-            return DataSource.DEFAULT.getFailure();
+            return errorMessageApi != null
+                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi)
+                : DataSource.DEFAULT.getFailure();
         }
       case DioErrorType.cancel:
         return DataSource.CANCEL.getFailure();

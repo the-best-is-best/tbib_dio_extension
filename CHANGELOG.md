@@ -1,3 +1,6 @@
+##  1.0.2
+* Solve bugs not get error message from api
+
 ## 1.0.1
 * Change Readme
 

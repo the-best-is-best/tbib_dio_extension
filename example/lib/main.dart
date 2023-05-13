@@ -13,16 +13,7 @@ class TokenInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    // String? userJson = di<GetStorage>().read(GetStorageKeys.userKey);
-    // if (userJson != null && userJson.isNotEmpty) {
-    //   UserModel user = UserModel.fromJson(jsonDecode(userJson));
-    //   if (user.token.isNotEmpty) {
-    //     options.headers.addAll({'access_token': user.token});
-    //   } else {
-    //     di<GetStorage>().remove(GetStorageKeys.userKey);
-    //     MitX.offAllNamed(RouteManager.authRoute);
-    //   }
-    // }
+    // get user token and send it to header
     super.onRequest(options, handler);
   }
 
@@ -31,11 +22,6 @@ class TokenInterceptor extends Interceptor {
     Response response,
     ResponseInterceptorHandler handler,
   ) async {
-    if (response.statusCode == 403 || response.statusCode == 401) {
-      // di<GetStorage>().remove(GetStorageKeys.userKey);
-      // MitX.offAllNamed(RouteManager.authRoute);
-    }
-
     super.onResponse(response, handler);
   }
 
@@ -44,6 +30,9 @@ class TokenInterceptor extends Interceptor {
     DioError err,
     ErrorInterceptorHandler handler,
   ) async {
+    if (err.response?.statusCode == 403 || err.response?.statusCode == 401) {
+      // remove cache login and navigation to login
+    }
     super.onError(err, handler);
   }
 }
