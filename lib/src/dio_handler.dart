@@ -14,13 +14,13 @@ class DioManger {
       {required BaseOptions baseOptions,
 
       /// add your custom Interceptor
-      Iterable<Interceptor> iInterceptors = const [],
+      Iterable<Interceptor> interceptors = const [],
       bool workWithBadCertificate = false}) {
     dioApi = Dio(
       baseOptions,
     );
 
-    dioApi.interceptors.addAll(iInterceptors);
+    dioApi.interceptors.addAll(interceptors);
 
     if (kDebugMode || workWithBadCertificate) {
       if (!dioApi.options.baseUrl.contains('https')) {
@@ -39,7 +39,7 @@ class DioManger {
     String contentType = 'application/json',
 
     /// add your custom Interceptor
-    Iterable<Interceptor> iInterceptors = const [],
+    Iterable<Interceptor> interceptors = const [],
     bool workWithBadCertificate = false,
   }) {
     dioApi = Dio(
@@ -51,7 +51,7 @@ class DioManger {
         contentType: contentType,
       ),
     );
-    dioApi.interceptors.addAll(iInterceptors);
+    dioApi.interceptors.addAll(interceptors);
 
     if (kDebugMode || workWithBadCertificate) {
       if (!dioApi.options.baseUrl.contains('https')) {

@@ -1,3 +1,7 @@
+## 1.0.4
+
+* fix attribute name
+
 ## 1.0.3
 
 * iterable changed to iInterceptors
