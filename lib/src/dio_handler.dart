@@ -14,14 +14,15 @@ class DioManger {
       {required BaseOptions baseOptions,
 
       /// add your custom Interceptor
-      Iterable<Interceptor> iterable = const []}) {
+      Iterable<Interceptor> iInterceptors = const [],
+      bool workWithBadCertificate = false}) {
     dioApi = Dio(
       baseOptions,
     );
 
-    dioApi.interceptors.addAll(iterable);
+    dioApi.interceptors.addAll(iInterceptors);
 
-    if (kDebugMode) {
+    if (kDebugMode || workWithBadCertificate) {
       if (!dioApi.options.baseUrl.contains('https')) {
         HttpOverrides.global = PostHttpOverrides();
       }
@@ -32,13 +33,15 @@ class DioManger {
 
   /// use it if will use default settings
   /// PrettyDioLogger active when build debug mode only
-  static void init(
-      {String baseUrl = "",
-      Duration timeOut = const Duration(minutes: 2),
-      String contentType = 'application/json',
+  static void init({
+    String baseUrl = "",
+    Duration timeOut = const Duration(minutes: 2),
+    String contentType = 'application/json',
 
-      /// add your custom Interceptor
-      Iterable<Interceptor> iterable = const []}) {
+    /// add your custom Interceptor
+    Iterable<Interceptor> iInterceptors = const [],
+    bool workWithBadCertificate = false,
+  }) {
     dioApi = Dio(
       BaseOptions(
         baseUrl: baseUrl,
@@ -48,9 +51,9 @@ class DioManger {
         contentType: contentType,
       ),
     );
-    dioApi.interceptors.addAll(iterable);
+    dioApi.interceptors.addAll(iInterceptors);
 
-    if (kDebugMode) {
+    if (kDebugMode || workWithBadCertificate) {
       if (!dioApi.options.baseUrl.contains('https')) {
         HttpOverrides.global = PostHttpOverrides();
       }
