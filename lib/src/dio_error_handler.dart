@@ -26,7 +26,7 @@ class ErrorHandler implements Exception {
   late Failure failure;
 
   ErrorHandler.handle(dynamic error, {String? messageFromApi}) {
-    if (error is DioError) {
+    if (error is DioException) {
       // dio error so its error from response of the API
       failure = _handleError(error, messageFromApi);
     } else {
@@ -35,15 +35,15 @@ class ErrorHandler implements Exception {
     }
   }
 
-  Failure _handleError(DioError error, String? errorMessageApi) {
+  Failure _handleError(DioException error, String? errorMessageApi) {
     switch (error.type) {
-      case DioErrorType.connectionTimeout:
+      case DioExceptionType.connectionTimeout:
         return DataSource.CONNECT_TIMEOUT.getFailure();
-      case DioErrorType.sendTimeout:
+      case DioExceptionType.sendTimeout:
         return DataSource.SEND_TIMEOUT.getFailure();
-      case DioErrorType.receiveTimeout:
+      case DioExceptionType.receiveTimeout:
         return DataSource.RECEIVE_TIMEOUT.getFailure();
-      case DioErrorType.badResponse:
+      case DioExceptionType.badResponse:
         switch (error.response?.statusCode) {
           case ResponseCode.BAD_REQUEST:
             return errorMessageApi != null
@@ -70,14 +70,14 @@ class ErrorHandler implements Exception {
                 ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi)
                 : DataSource.DEFAULT.getFailure();
         }
-      case DioErrorType.cancel:
+      case DioExceptionType.cancel:
         return DataSource.CANCEL.getFailure();
-      case DioErrorType.unknown:
+      case DioExceptionType.unknown:
         return DataSource.DEFAULT.getFailure();
-      case DioErrorType.badCertificate:
+      case DioExceptionType.badCertificate:
         return DataSource.BAD_CERTIFICATE.getFailure();
 
-      case DioErrorType.connectionError:
+      case DioExceptionType.connectionError:
         return DataSource.CONNECT_TIMEOUT.getFailure();
     }
   }

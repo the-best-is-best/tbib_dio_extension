@@ -27,7 +27,7 @@ class TokenInterceptor extends Interceptor {
 
   @override
   Future<void> onError(
-    DioError err,
+    DioException err,
     ErrorInterceptorHandler handler,
   ) async {
     if (err.response?.statusCode == 403 || err.response?.statusCode == 401) {

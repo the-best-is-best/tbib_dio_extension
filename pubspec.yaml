@@ -1,13 +1,13 @@
 name: tbib_dio_extension
 description: Init Dio With pretty logger to log errors and return you errors dio if url with http will get data.
-version: 1.0.4
+version: 1.0.5
 homepage: https://github.com/the-best-is-best/tbib_dio_extension
 
 environment:
   sdk: ">=2.12.0 <4.0.0"
 
 dependencies:
-  dio: ^5.1.2
+  dio: ^5.3.2
   flutter:
     sdk: flutter
   pretty_dio_logger: ^1.3.1
