@@ -1,0 +1,14 @@
+{
+    "@@locale": "en",
+    "success": "SUCCESS",
+    "no_content": "Success with not content",
+    "bad_request": "Bad request. try again later",
+    "forbidden_request": "Forbidden request. try again later",
+    "unauthorized": "User unauthorized, try again later",
+    "not_found": "Not found",
+    "internal_server_error": "Some thing went wrong, try again later",
+    "default_error": "Some thing went wrong, try again later",
+    "time_Out": "Request time out, try again later",
+    "no_internet": "Check Your Internet",
+    "bad_certificate": "Server Not Secure"
+}

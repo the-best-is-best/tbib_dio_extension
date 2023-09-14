@@ -1,8 +1,8 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 
 import 'package:dio/dio.dart';
-import 'package:tbib_dio_extension/src/failure.dart';
-import 'package:tbib_dio_extension/src/res/errors_dio_strings.dart';
+import 'package:flutter/widgets.dart';
+import 'package:tbib_dio_extension/tbib_dio_extension.dart';
 
 enum DataSource {
   SUCCESS,
@@ -85,21 +85,50 @@ class ErrorHandler implements Exception {
 
 extension DataSourceExtension on DataSource {
   Failure getFailure() {
+    BuildContext? c = DioManger.navigationKey?.currentContext;
     switch (this) {
       case DataSource.BAD_REQUEST:
-        return Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST);
+        return Failure(
+            ResponseCode.BAD_REQUEST,
+            c != null
+                ? TBIBDioLocalizations.of(c)?.bad_request ??
+                    ResponseMessage.BAD_REQUEST
+                : ResponseMessage.BAD_REQUEST);
       case DataSource.FORBIDDEN:
-        return Failure(ResponseCode.FORBIDDEN, ResponseMessage.FORBIDDEN);
+        return Failure(
+            ResponseCode.FORBIDDEN,
+            c != null
+                ? TBIBDioLocalizations.of(c)?.forbidden_request ??
+                    ResponseMessage.FORBIDDEN
+                : ResponseMessage.FORBIDDEN);
       case DataSource.UNAUTHORISED:
-        return Failure(ResponseCode.UNAUTHORISED, ResponseMessage.UNAUTHORISED);
+        return Failure(
+            ResponseCode.UNAUTHORISED,
+            c != null
+                ? TBIBDioLocalizations.of(c)?.unauthorized ??
+                    ResponseMessage.UNAUTHORISED
+                : ResponseMessage.UNAUTHORISED);
       case DataSource.NOT_FOUND:
-        return Failure(ResponseCode.NOT_FOUND, ResponseMessage.NOT_FOUND);
+        return Failure(
+            ResponseCode.NOT_FOUND,
+            c != null
+                ? TBIBDioLocalizations.of(c)?.not_found ??
+                    ResponseMessage.NOT_FOUND
+                : ResponseMessage.NOT_FOUND);
       case DataSource.INTERNAL_SERVER_ERROR:
-        return Failure(ResponseCode.INTERNAL_SERVER_ERROR,
-            ResponseMessage.INTERNAL_SERVER_ERROR);
+        return Failure(
+            ResponseCode.INTERNAL_SERVER_ERROR,
+            c != null
+                ? TBIBDioLocalizations.of(c)?.internal_server_error ??
+                    ResponseMessage.INTERNAL_SERVER_ERROR
+                : ResponseMessage.INTERNAL_SERVER_ERROR);
       case DataSource.CONNECT_TIMEOUT:
         return Failure(
-            ResponseCode.CONNECT_TIMEOUT, ResponseMessage.CONNECT_TIMEOUT);
+            ResponseCode.CONNECT_TIMEOUT,
+            c != null
+                ? TBIBDioLocalizations.of(c)?.time_Out ??
+                    ResponseMessage.CONNECT_TIMEOUT
+                : ResponseMessage.CONNECT_TIMEOUT);
       case DataSource.CANCEL:
         return Failure(ResponseCode.CANCEL, ResponseMessage.CANCEL);
       case DataSource.RECEIVE_TIMEOUT:
@@ -110,15 +139,33 @@ extension DataSourceExtension on DataSource {
       case DataSource.CACHE_ERROR:
         return Failure(ResponseCode.CACHE_ERROR, ResponseMessage.CACHE_ERROR);
       case DataSource.NO_INTERNET_CONNECTION:
-        return Failure(ResponseCode.NO_INTERNET_CONNECTION,
-            ResponseMessage.NO_INTERNET_CONNECTION);
+        return Failure(
+            ResponseCode.NO_INTERNET_CONNECTION,
+            c != null
+                ? TBIBDioLocalizations.of(c)?.no_internet ??
+                    ResponseMessage.NO_INTERNET_CONNECTION
+                : ResponseMessage.NO_INTERNET_CONNECTION);
       case DataSource.DEFAULT:
-        return Failure(ResponseCode.DEFAULT, ResponseMessage.DEFAULT);
+        return Failure(
+            ResponseCode.DEFAULT,
+            c != null
+                ? TBIBDioLocalizations.of(c)?.default_error ??
+                    ResponseMessage.DEFAULT
+                : ResponseMessage.DEFAULT);
       case DataSource.BAD_CERTIFICATE:
         return Failure(
-            ResponseCode.BAD_CERTIFICATE, ResponseMessage.BAD_CERTIFICATE);
+            ResponseCode.BAD_CERTIFICATE,
+            c != null
+                ? TBIBDioLocalizations.of(c)?.bad_certificate ??
+                    ResponseMessage.BAD_CERTIFICATE
+                : ResponseMessage.BAD_CERTIFICATE);
       default:
-        return Failure(ResponseCode.DEFAULT, ResponseMessage.DEFAULT);
+        return Failure(
+            ResponseCode.DEFAULT,
+            c != null
+                ? TBIBDioLocalizations.of(c)?.default_error ??
+                    ResponseMessage.DEFAULT
+                : ResponseMessage.DEFAULT);
     }
   }
 }

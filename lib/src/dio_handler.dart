@@ -2,20 +2,24 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioManger {
   /// your dio
   static late Dio dioApi;
+  static GlobalKey<NavigatorState>? navigationKey;
 
   /// use it to custom your options
   /// PrettyDioLogger active when build debug mode only
   static void initWithCustomOption(
       {required BaseOptions baseOptions,
+      GlobalKey<NavigatorState>? navKey,
 
       /// add your custom Interceptor
       Iterable<Interceptor> interceptors = const [],
       bool workWithBadCertificate = false}) {
+    navigationKey = navKey;
     dioApi = Dio(
       baseOptions,
     );
@@ -34,6 +38,7 @@ class DioManger {
   /// use it if will use default settings
   /// PrettyDioLogger active when build debug mode only
   static void init({
+    GlobalKey<NavigatorState>? navKey,
     String baseUrl = "",
     Duration timeOut = const Duration(minutes: 2),
     String contentType = 'application/json',
@@ -42,6 +47,7 @@ class DioManger {
     Iterable<Interceptor> interceptors = const [],
     bool workWithBadCertificate = false,
   }) {
+    navigationKey = navKey;
     dioApi = Dio(
       BaseOptions(
         baseUrl: baseUrl,
