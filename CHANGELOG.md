@@ -1,4 +1,10 @@
-## 1.0.6
+##  1.1.0
+
+- Fix issues translator
+- support requests_inspector package
+ 
+
+## 1.0.6 
 
 - support localization error (english , arabic)
 
@@ -11,7 +17,7 @@
 
 ## 1.0.3
 
-* iterable changed to iInterceptors
+* iterable changed to Interceptors
 * you can force to support http connection
 
 ## 1.0.2

@@ -1,10 +1,10 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=/Users/52ndsolution/downloads/developments/flutter
-FLUTTER_APPLICATION_PATH=/Users/52ndsolution/Desktop/my_packages/tbib_dio_extension
+FLUTTER_ROOT=C:\flutter
+FLUTTER_APPLICATION_PATH=D:\work\my_package\tbib_dio_extension
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_BUILD_DIR=build
-FLUTTER_BUILD_NAME=1.0.3
-FLUTTER_BUILD_NUMBER=1.0.3
+FLUTTER_BUILD_NAME=1.0.6
+FLUTTER_BUILD_NUMBER=1.0.6
 DART_OBFUSCATION=false
 TRACK_WIDGET_CREATION=true
 TREE_SHAKE_ICONS=false
