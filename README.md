@@ -1,5 +1,19 @@
 ##   TBIB Dio Extension
 
+* HINT
+
+if use flutter version under 3.16.0
+don't need this 
+
+Need dependency_overrides use this
+
+```pubspec
+dependency_overrides:
+  gql: ^1.0.0+1
+```
+
+see <a href="https://pub.dev/packages/requests_inspector">how work requests_inspector</a>
+
 ### Import
 
 ```dart

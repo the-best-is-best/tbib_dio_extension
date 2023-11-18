@@ -1,3 +1,8 @@
+##  1.1.1
+- minimum flutter 3.16.0
+- change readme
+
+
 ##  1.1.0
 
 - Fix issues translator
