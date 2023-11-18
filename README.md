@@ -3,7 +3,7 @@
 * HINT
 
 if use flutter version under 3.16.0
-don't need this 
+use version 1.0.6
 
 Need dependency_overrides use this
 
