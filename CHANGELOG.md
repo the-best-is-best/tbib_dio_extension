@@ -1,3 +1,7 @@
+##  1.1.3
+- upgrade dependency
+- change readme
+
 ##  1.1.1 - 1.1.2
 - minimum flutter 3.16.0
 - change readme

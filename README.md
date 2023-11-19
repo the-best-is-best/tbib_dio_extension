@@ -3,16 +3,10 @@
 * HINT
 
 if use flutter version under 3.16.0
-use version 1.0.6
+- use version 1.0.6
 
-Need dependency_overrides use this
 
-```pubspec
-dependency_overrides:
-  gql: ^1.0.0+1
-```
-
-see <a href="https://pub.dev/packages/requests_inspector">how work requests_inspector</a>
+see how work  <a href="https://pub.dev/packages/requests_inspector">requests_inspector</a>
 
 ### Import
 
