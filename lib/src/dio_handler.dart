@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:requests_inspector/requests_inspector.dart';
+// import 'package:requests_inspector/requests_inspector.dart';
 
 class DioManger {
   /// your dio
@@ -67,7 +67,7 @@ class DioManger {
       dioApi.interceptors.addAll([
         PrettyDioLogger(
             requestHeader: true, requestBody: true, responseHeader: true),
-        RequestsInspectorInterceptor()
+        //   RequestsInspectorInterceptor()
       ]);
     }
   }

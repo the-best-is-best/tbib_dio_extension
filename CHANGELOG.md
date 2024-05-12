@@ -1,6 +1,10 @@
+##  1.1.6
+- requests_inspector removed
+
 ##  1.1.5
 - upgrade dependency
 
+requests_inspector
 ##  1.1.4
 - upgrade dependency
 
