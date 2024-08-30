@@ -1,12 +1,5 @@
 ##   TBIB Dio Extension
 
-* HINT
-
-if use flutter version under 3.16.0
-- use version 1.0.6
-
-
-see how work  <a href="https://pub.dev/packages/requests_inspector">requests_inspector</a>
 
 ### Import
 
