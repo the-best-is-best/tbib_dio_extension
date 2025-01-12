@@ -47,27 +47,33 @@ class ErrorHandler implements Exception {
         switch (error.response?.statusCode) {
           case ResponseCode.BAD_REQUEST:
             return errorMessageApi != null
-                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi)
+                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi,
+                    error.response?.data)
                 : DataSource.BAD_REQUEST.getFailure();
           case ResponseCode.FORBIDDEN:
             return errorMessageApi != null
-                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi)
+                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi,
+                    error.response?.data)
                 : DataSource.FORBIDDEN.getFailure();
           case ResponseCode.UNAUTHORISED:
             return errorMessageApi != null
-                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi)
+                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi,
+                    error.response?.data)
                 : DataSource.UNAUTHORISED.getFailure();
           case ResponseCode.NOT_FOUND:
             return errorMessageApi != null
-                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi)
+                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi,
+                    error.response?.data)
                 : DataSource.NOT_FOUND.getFailure();
           case ResponseCode.INTERNAL_SERVER_ERROR:
             return errorMessageApi != null
-                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi)
+                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi,
+                    error.response?.data)
                 : DataSource.INTERNAL_SERVER_ERROR.getFailure();
           default:
             return errorMessageApi != null
-                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi)
+                ? Failure(ResponseCode.BAD_REQUEST, errorMessageApi,
+                    error.response?.data)
                 : DataSource.DEFAULT.getFailure();
         }
       case DioExceptionType.cancel:
@@ -150,79 +156,91 @@ extension DataSourceExtension on DataSource {
             c != null
                 ? TBIBDioLocalizations.of(c)?.bad_request ??
                     ResponseMessage.BAD_REQUEST
-                : ResponseMessage.BAD_REQUEST);
+                : ResponseMessage.BAD_REQUEST,
+            null);
       case DataSource.FORBIDDEN:
         return Failure(
             ResponseCode.FORBIDDEN,
             c != null
                 ? TBIBDioLocalizations.of(c)?.forbidden_request ??
                     ResponseMessage.FORBIDDEN
-                : ResponseMessage.FORBIDDEN);
+                : ResponseMessage.FORBIDDEN,
+            null);
       case DataSource.UNAUTHORISED:
         return Failure(
             ResponseCode.UNAUTHORISED,
             c != null
                 ? TBIBDioLocalizations.of(c)?.unauthorized ??
                     ResponseMessage.UNAUTHORISED
-                : ResponseMessage.UNAUTHORISED);
+                : ResponseMessage.UNAUTHORISED,
+            null);
       case DataSource.NOT_FOUND:
         return Failure(
             ResponseCode.NOT_FOUND,
             c != null
                 ? TBIBDioLocalizations.of(c)?.not_found ??
                     ResponseMessage.NOT_FOUND
-                : ResponseMessage.NOT_FOUND);
+                : ResponseMessage.NOT_FOUND,
+            null);
       case DataSource.INTERNAL_SERVER_ERROR:
         return Failure(
             ResponseCode.INTERNAL_SERVER_ERROR,
             c != null
                 ? TBIBDioLocalizations.of(c)?.internal_server_error ??
                     ResponseMessage.INTERNAL_SERVER_ERROR
-                : ResponseMessage.INTERNAL_SERVER_ERROR);
+                : ResponseMessage.INTERNAL_SERVER_ERROR,
+            null);
       case DataSource.CONNECT_TIMEOUT:
         return Failure(
             ResponseCode.CONNECT_TIMEOUT,
             c != null
                 ? TBIBDioLocalizations.of(c)?.time_Out ??
                     ResponseMessage.CONNECT_TIMEOUT
-                : ResponseMessage.CONNECT_TIMEOUT);
+                : ResponseMessage.CONNECT_TIMEOUT,
+            null);
       case DataSource.CANCEL:
-        return Failure(ResponseCode.CANCEL, ResponseMessage.CANCEL);
+        return Failure(ResponseCode.CANCEL, ResponseMessage.CANCEL, null);
       case DataSource.RECEIVE_TIMEOUT:
-        return Failure(
-            ResponseCode.RECEIVE_TIMEOUT, ResponseMessage.RECEIVE_TIMEOUT);
+        return Failure(ResponseCode.RECEIVE_TIMEOUT,
+            ResponseMessage.RECEIVE_TIMEOUT, null);
       case DataSource.SEND_TIMEOUT:
-        return Failure(ResponseCode.SEND_TIMEOUT, ResponseMessage.SEND_TIMEOUT);
+        return Failure(
+            ResponseCode.SEND_TIMEOUT, ResponseMessage.SEND_TIMEOUT, null);
       case DataSource.CACHE_ERROR:
-        return Failure(ResponseCode.CACHE_ERROR, ResponseMessage.CACHE_ERROR);
+        return Failure(
+            ResponseCode.CACHE_ERROR, ResponseMessage.CACHE_ERROR, null);
       case DataSource.NO_INTERNET_CONNECTION:
         return Failure(
             ResponseCode.NO_INTERNET_CONNECTION,
             c != null
                 ? TBIBDioLocalizations.of(c)?.no_internet ??
                     ResponseMessage.NO_INTERNET_CONNECTION
-                : ResponseMessage.NO_INTERNET_CONNECTION);
+                : ResponseMessage.NO_INTERNET_CONNECTION,
+            null);
       case DataSource.DEFAULT:
         return Failure(
             ResponseCode.DEFAULT,
             c != null
                 ? TBIBDioLocalizations.of(c)?.default_error ??
                     ResponseMessage.DEFAULT
-                : ResponseMessage.DEFAULT);
+                : ResponseMessage.DEFAULT,
+            null);
       case DataSource.BAD_CERTIFICATE:
         return Failure(
             ResponseCode.BAD_CERTIFICATE,
             c != null
                 ? TBIBDioLocalizations.of(c)?.bad_certificate ??
                     ResponseMessage.BAD_CERTIFICATE
-                : ResponseMessage.BAD_CERTIFICATE);
+                : ResponseMessage.BAD_CERTIFICATE,
+            null);
       default:
         return Failure(
             ResponseCode.DEFAULT,
             c != null
                 ? TBIBDioLocalizations.of(c)?.default_error ??
                     ResponseMessage.DEFAULT
-                : ResponseMessage.DEFAULT);
+                : ResponseMessage.DEFAULT,
+            null);
     }
   }
 }

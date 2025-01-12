@@ -1,3 +1,7 @@
+## 1.1.9
+
+- Get data result in Failure
+
 ## 1.1.8
 
 - upgrade dependency

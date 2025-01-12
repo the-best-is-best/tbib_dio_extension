@@ -1,7 +1,7 @@
 name: tbib_dio_extension
 description: Init Dio With pretty logger to log errors and return you errors dio
   if url with http will get data.
-version: 1.1.8
+version: 1.1.9
 homepage: https://github.com/the-best-is-best/tbib_dio_extension
 
 environment:
@@ -20,13 +20,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
-flutter:
+#flutter:
 
   # To add assets to your package, add an assets section, like this:
   # assets:

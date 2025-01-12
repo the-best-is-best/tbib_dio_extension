@@ -1,4 +1,4 @@
-library tbib_dio_extension;
+library;
 
 export 'src/dio_error_handler.dart';
 export 'src/dio_handler.dart';

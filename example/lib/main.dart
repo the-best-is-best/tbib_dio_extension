@@ -7,36 +7,6 @@ void main() {
   runApp(const MyApp());
 }
 
-class TokenInterceptor extends Interceptor {
-  @override
-  Future<void> onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) async {
-    // get user token and send it to header
-    super.onRequest(options, handler);
-  }
-
-  @override
-  Future<void> onResponse(
-    Response response,
-    ResponseInterceptorHandler handler,
-  ) async {
-    super.onResponse(response, handler);
-  }
-
-  @override
-  Future<void> onError(
-    DioException err,
-    ErrorInterceptorHandler handler,
-  ) async {
-    if (err.response?.statusCode == 403 || err.response?.statusCode == 401) {
-      // remove cache login and navigation to login
-    }
-    super.onError(err, handler);
-  }
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -63,34 +33,45 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
   final String title;
+
+  const MyHomePage({super.key, required this.title});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class TokenInterceptor extends Interceptor {
   @override
-  void initState() {
-    getDataApi();
-    super.initState();
-  }
-
-  void getDataApi() async {
-    var dio = DioManger.dioApi;
-    try {
-      debugPrint("dio url is ${(dio.options.baseUrl)}");
-      var res = await dio.post('/endpoint', data: {});
-      debugPrint("dio url is ${res.realUri}");
-      res.data;
-    } catch (error) {
-      debugPrint(
-          "error catch is ${ErrorHandler.handle(error, messageFromApi: (error is DioError) ? error.response?.data['errorMessage'] : null).failure.messages}");
+  Future<void> onError(
+    DioException err,
+    ErrorInterceptorHandler handler,
+  ) async {
+    if (err.response?.statusCode == 403 || err.response?.statusCode == 401) {
+      // remove cache login and navigation to login
     }
+    super.onError(err, handler);
   }
 
+  @override
+  Future<void> onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
+    // get user token and send it to header
+    super.onRequest(options, handler);
+  }
+
+  @override
+  Future<void> onResponse(
+    Response response,
+    ResponseInterceptorHandler handler,
+  ) async {
+    super.onResponse(response, handler);
+  }
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -107,5 +88,24 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  void getDataApi() async {
+    var dio = DioManger.dioApi;
+    try {
+      debugPrint("dio url is ${(dio.options.baseUrl)}");
+      var res = await dio.post('/endpoint', data: {});
+      debugPrint("dio url is ${res.realUri}");
+      res.data;
+    } catch (error) {
+      debugPrint(
+          "error catch is ${ErrorHandler.handle(error, messageFromApi: (error is DioException) ? error.response?.data['errorMessage'] : null).failure.messages}");
+    }
+  }
+
+  @override
+  void initState() {
+    getDataApi();
+    super.initState();
   }
 }
